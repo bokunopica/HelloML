@@ -3,3 +3,6 @@
 venv
 /MNIST
 MNIST
+*.npy
+/timit_11
+timit_11
