@@ -8,7 +8,11 @@ from torchvision import utils as vutils
 from discriminator import Discriminator
 from lpips import LPIPS
 from vqgan import VQGAN
-from utils import load_data, weights_init
+from utils import (
+    load_data, 
+    weights_init, 
+    customize_args,
+)
 
 
 class TrainVQGAN:
@@ -92,6 +96,11 @@ class TrainVQGAN:
                 torch.save(self.vqgan.state_dict(), os.path.join("checkpoints", f"vqgan_epoch_{epoch}.pt"))
 
 
+
+
+
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="VQGAN")
     parser.add_argument('--latent-dim', type=int, default=256, help='Latent dimension n_z (default: 256)')
@@ -111,9 +120,12 @@ if __name__ == '__main__':
     parser.add_argument('--rec-loss-factor', type=float, default=1., help='Weighting factor for reconstruction loss.')
     parser.add_argument('--perceptual-loss-factor', type=float, default=1., help='Weighting factor for perceptual loss.')
 
-    args = parser.parse_args()
-    args.dataset_path = r"C:\Users\dome\datasets\flowers"
 
+    argument_dict = {
+        'latent_dim': 128,
+        'dataset_path': r"C:\Users\dome\datasets\flowers"
+    }
+    args = customize_args(parser.parse_args(), argument_dict)
     train_vqgan = TrainVQGAN(args)
 
 

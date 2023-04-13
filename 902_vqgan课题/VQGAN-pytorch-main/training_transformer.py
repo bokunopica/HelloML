@@ -7,7 +7,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import utils as vutils
 from transformer import VQGANTransformer
-from utils import load_data, plot_images
+from utils import (
+    load_data, 
+    plot_images,
+    customize_args,
+)
 
 
 class TrainTransformer:
@@ -89,9 +93,11 @@ if __name__ == '__main__':
     parser.add_argument('--pkeep', type=float, default=0.5, help='Percentage for how much latent codes to keep.')
     parser.add_argument('--sos-token', type=int, default=0, help='Start of Sentence token.')
 
-    args = parser.parse_args()
-    args.dataset_path = r"C:\Users\dome\datasets\flowers"
-    args.checkpoint_path = r".\checkpoints\vqgan_last_ckpt.pt"
+    argument_dict = {
+        'dataset_path': r"C:\Users\dome\datasets\flowers",
+        'checkpoint_path': r".\checkpoints\vqgan_last_ckpt.pt"
+    }
+    args = customize_args(parser.parse_args(), argument_dict)
 
     train_transformer = TrainTransformer(args)
 

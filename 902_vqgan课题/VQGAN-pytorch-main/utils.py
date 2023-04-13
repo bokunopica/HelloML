@@ -72,3 +72,9 @@ def plot_images(images):
     axarr[2].imshow(half_sample.cpu().detach().numpy()[0].transpose(1, 2, 0))
     axarr[3].imshow(full_sample.cpu().detach().numpy()[0].transpose(1, 2, 0))
     plt.show()
+
+
+def customize_args(args, argument_dict):
+    for key, value in argument_dict.items():
+        setattr(args, key, value)
+    return args
