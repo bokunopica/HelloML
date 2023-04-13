@@ -66,7 +66,8 @@ class TrainTransformer:
                     pbar.update(0)
             log, sampled_imgs = self.model.log_images(imgs[0][None])
             vutils.save_image(sampled_imgs, os.path.join("results", f"transformer_{epoch}.jpg"), nrow=4)
-            plot_images(log)
+            # TODO 暂时屏蔽用来跑代码
+            # plot_images(log)
             torch.save(self.model.state_dict(), os.path.join("checkpoints", f"transformer_{epoch}.pt"))
 
 
@@ -94,8 +95,11 @@ if __name__ == '__main__':
     parser.add_argument('--sos-token', type=int, default=0, help='Start of Sentence token.')
 
     argument_dict = {
-        'dataset_path': r"C:\Users\dome\datasets\flowers",
-        'checkpoint_path': r".\checkpoints\vqgan_last_ckpt.pt"
+        # 'dataset_path': r"C:\Users\dome\datasets\flowers",
+        'checkpoint_path': r".\checkpoints\vqgan_last_ckpt.pt",
+        'dataset_path': r"../clip_test_data/",
+        'batch_size': 1,
+        'epochs': 50
     }
     args = customize_args(parser.parse_args(), argument_dict)
 

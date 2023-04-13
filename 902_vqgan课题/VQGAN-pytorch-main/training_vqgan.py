@@ -122,8 +122,10 @@ if __name__ == '__main__':
 
 
     argument_dict = {
-        'latent_dim': 128,
-        'dataset_path': r"C:\Users\dome\datasets\flowers"
+        # 'latent_dim': 128,
+        # 'dataset_path': r"C:\Users\dome\datasets\flowers"
+        'dataset_path': r"../clip_test_data/",
+        'batch_size': 1
     }
     args = customize_args(parser.parse_args(), argument_dict)
     train_vqgan = TrainVQGAN(args)

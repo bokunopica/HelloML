@@ -6,3 +6,7 @@ MNIST
 *.npy
 /timit_11
 timit_11
+__pycache__
+checkpoints
+results
+vgg_lpips
