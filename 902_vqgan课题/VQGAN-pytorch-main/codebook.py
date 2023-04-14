@@ -16,6 +16,8 @@ class Codebook(nn.Module):
         z = z.permute(0, 2, 3, 1).contiguous()
         z_flattened = z.view(-1, self.latent_dim)
 
+        # (z_flattened-embedding.weight)^2
+        # z_flat [1024, 256] embedding [1024, 256] 要获得1024,1024大小得(a-b)^2
         d = torch.sum(z_flattened**2, dim=1, keepdim=True) + \
             torch.sum(self.embedding.weight**2, dim=1) - \
             2*(torch.matmul(z_flattened, self.embedding.weight.t()))
