@@ -92,7 +92,12 @@ class TrainVQGAN:
                         GAN_Loss=np.round(gan_loss.cpu().detach().numpy().item(), 3)
                     )
                     pbar.update(0)
-                torch.save(self.vqgan.state_dict(), os.path.join("checkpoints", f"vqgan_epoch_{epoch}.pt"))
+                # torch.save(self.vqgan.state_dict(), os.path.join("checkpoints", f"vqgan_epoch_{epoch}.pt"))
+                # 100次epoch存一次模型 训练5000个epoch磁盘不够吃
+                if((epoch+1)%100==0):
+                    torch.save(self.vqgan.state_dict(), os.path.join("checkpoints", f"vqgan_epoch_{epoch}.pt"))
+                    torch.save(self.vqgan.state_dict(), os.path.join("checkpoints", f"vqgan_last_ckpt.pt"))
+                    
 
 
 
@@ -125,7 +130,7 @@ if __name__ == '__main__':
         # 'dataset_path': r"C:\Users\dome\datasets\flowers"
         'dataset_path': r"../chex/",
         'batch_size': 2,
-        'epochs': 5000,
+        'epochs': 100,
         'disc_start': 2500,
     }
     args = customize_args(parser.parse_args(), argument_dict)
