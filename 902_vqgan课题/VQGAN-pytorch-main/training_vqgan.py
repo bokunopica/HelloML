@@ -58,7 +58,6 @@ class TrainVQGAN:
 
                     disc_real = self.discriminator(imgs)
                     disc_fake = self.discriminator(decoded_images)
-
                     disc_factor = self.vqgan.adopt_weight(args.disc_factor, epoch*steps_per_epoch+i, threshold=args.disc_start)
 
                     perceptual_loss = self.perceptual_loss(imgs, decoded_images)
@@ -124,9 +123,10 @@ if __name__ == '__main__':
     argument_dict = {
         # 'latent_dim': 128,
         # 'dataset_path': r"C:\Users\dome\datasets\flowers"
-        'dataset_path': r"../clip_test_data/",
-        'batch_size': 1,
-        'epochs': 10,
+        'dataset_path': r"../chex/",
+        'batch_size': 2,
+        'epochs': 5000,
+        'disc_start': 2500,
     }
     args = customize_args(parser.parse_args(), argument_dict)
     train_vqgan = TrainVQGAN(args)
