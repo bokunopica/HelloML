@@ -126,7 +126,7 @@ if __name__ == '__main__':
         # 'dataset_path': r"C:\Users\dome\datasets\flowers"
         'dataset_path': r"../clip_test_data/",
         'batch_size': 1,
-        'epochs': 100,
+        'epochs': 10,
     }
     args = customize_args(parser.parse_args(), argument_dict)
     train_vqgan = TrainVQGAN(args)
