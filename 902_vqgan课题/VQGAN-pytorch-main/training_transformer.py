@@ -68,7 +68,8 @@ class TrainTransformer:
             vutils.save_image(sampled_imgs, os.path.join("results", f"transformer_{epoch}.jpg"), nrow=4)
             # TODO 暂时屏蔽用来跑代码
             # plot_images(log)
-            torch.save(self.model.state_dict(), os.path.join("checkpoints", f"transformer_{epoch}.pt"))
+            if (epoch+1)%100==0:
+                torch.save(self.model.state_dict(), os.path.join("checkpoints", f"transformer_{epoch}.pt"))
 
 
 if __name__ == '__main__':
@@ -97,9 +98,9 @@ if __name__ == '__main__':
     argument_dict = {
         # 'dataset_path': r"C:\Users\dome\datasets\flowers",
         'checkpoint_path': r".\checkpoints\vqgan_last_ckpt.pt",
-        'dataset_path': r"../clip_test_data/",
-        'batch_size': 1,
-        'epochs': 50
+        'dataset_path': r"../chex/",
+        'batch_size': 2,
+        'epochs': 200
     }
     args = customize_args(parser.parse_args(), argument_dict)
 

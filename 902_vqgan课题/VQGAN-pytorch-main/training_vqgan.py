@@ -130,7 +130,7 @@ if __name__ == '__main__':
         # 'dataset_path': r"C:\Users\dome\datasets\flowers"
         'dataset_path': r"../chex/",
         'batch_size': 2,
-        'epochs': 100,
+        'epochs': 5000,
         'disc_start': 2500,
     }
     args = customize_args(parser.parse_args(), argument_dict)
