@@ -130,8 +130,8 @@ if __name__ == '__main__':
         # 'dataset_path': r"C:\Users\dome\datasets\flowers"
         'dataset_path': r"../chex/",
         'batch_size': 2,
-        'epochs': 5000,
-        'disc_start': 2500,
+        'epochs': 10000,
+        'disc_start': 5000,
     }
     args = customize_args(parser.parse_args(), argument_dict)
     train_vqgan = TrainVQGAN(args)
